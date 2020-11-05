@@ -175,6 +175,27 @@ public class SinglyLinkedList<E> implements List<E> {
     public String toString() {
         return "SinglyLinkedList{" + "head=" + head + ", tail=" + tail + ", size=" + size + '}';
     }
+    
+    private Node <E> getPrevious(Node <E>  n){
+        int index = 0;
+        int index1= 0;
+        int posición = 0;
+        
+        for(Node<E> i= head; i!=null; i=i.next){
+            index++;
+        }
+        for(Node<E> i= head; i!=null; i=i.next){
+            if(i.equals(n)){
+                posición = index -index1;
+                Node <E> nodoTemp = n;
+                for(Node<E> j= head; j!=nodoTemp; j=j.next){
+                    return j;
+                }
+            }
+            index1++;
+        }
+        return null;
+    }
 
   
     
