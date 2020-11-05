@@ -95,22 +95,66 @@ public class SinglyLinkedList<E> implements List<E> {
 
     @Override
     public E removeFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty()){
+            return null;
+        }
+        E data = head.getData();
+        head = head.getNext();
+        size--;
+        if(size==0){
+            tail=null;
+        }
+        return data;
     }
 
     @Override
     public E removeLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(isEmpty()){
+            return null;
+        }
+        if(head == null || tail == null){
+            return null;
+        }
+        Node<E> last = head;
+        Node<E> previouslast = null;
+        for(Node<E> i= head; i!=null; i=i.next){
+            previouslast = last;
+            last = last.next;
+        }
+        previouslast.next = null;
+        size--;
+        if(size==0){
+            tail=null;
+        }
+        return previouslast.getData();
     }
 
     @Override
     public E remove(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        if(index == 0){
+//            return removeFirst();
+//        }
+//        Node<E> temp = head;
+//        for(Node<E> i= head; i!=null; i=i.next){
+//            i = i.next;
+//            if(i == null || i.next == null){
+//                return i.getData();
+//            }
+//        }
+        return null;
     }
 
     @Override
     public int indexOf(E e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int index = 0;
+        for(Node<E> i= head; i!=null; i=i.next){
+            if(i.equals(e)){
+                return index;
+            }
+            index++;
+        }
+        index = -1;
+        return index;
     }
 
     @Override
