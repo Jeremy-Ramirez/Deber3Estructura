@@ -68,7 +68,29 @@ public class SinglyLinkedList<E> implements List<E> {
 
     @Override
     public boolean add(int index, E element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(element == null || isEmpty()){
+            return false;
+        }
+        if(index==0){
+            addFirst(element);
+            return true;
+        }
+        if(index==size){
+            addLast(element);
+            return true;
+        }
+        int contador=0;
+        Node <E> temp = new Node<>(element,null);
+         for(Node<E> i= head; i!=null; i=i.next){
+            if(contador+1==index){
+                temp.next = i.next;
+                i.next = temp;
+                size++;
+                return true;
+            }
+            contador++;    
+        }
+        return false;
     }
 
     @Override
@@ -93,7 +115,13 @@ public class SinglyLinkedList<E> implements List<E> {
 
     @Override
     public boolean contains(E e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(e == null || isEmpty())
+            return false;
+        for(Node<E> i= head;i!=null;i=i.next){
+            if(i.getData().equals(e))
+                return true;
+        }
+        return false;
     }
 
   
