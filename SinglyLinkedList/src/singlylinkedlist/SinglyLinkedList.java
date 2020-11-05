@@ -177,22 +177,22 @@ public class SinglyLinkedList<E> implements List<E> {
     }
     
     private Node <E> getPrevious(Node <E>  n){
+        int size = 0;
+        int posición= 0;
         int index = 0;
-        int index1= 0;
-        int posición = 0;
         
         for(Node<E> i= head; i!=null; i=i.next){
-            index++;
+            size++;
         }
         for(Node<E> i= head; i!=null; i=i.next){
             if(i.equals(n)){
-                posición = index -index1;
+                index = size -posición;
                 Node <E> nodoTemp = n;
                 for(Node<E> j= head; j!=nodoTemp; j=j.next){
                     return j;
                 }
             }
-            index1++;
+            posición++;
         }
         return null;
     }
