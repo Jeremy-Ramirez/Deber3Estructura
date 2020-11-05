@@ -11,7 +11,7 @@ public class SinglyLinkedList<E> implements List<E> {
     private int size = 0;
 
     public SinglyLinkedList() {
-       
+        
     }
 
     //Consultar primero, ultimo y tamano........................................
@@ -131,17 +131,20 @@ public class SinglyLinkedList<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-//        if(index == 0){
-//            return removeFirst();
-//        }
-//        Node<E> temp = head;
-//        for(Node<E> i= head; i!=null; i=i.next){
-//            i = i.next;
-//            if(i == null || i.next == null){
-//                return i.getData();
-//            }
-//        }
-        return null;
+        if(index < 0){
+            return null;
+        }
+        if(index == 0){
+            return removeFirst();
+        }
+        Node<E> temp = head;
+        
+        for(int i = 0; i < index - 1; i++){
+            temp =temp.next;
+        }
+       Node<E> temp2 = temp.next;
+       temp2 = temp.next.next;
+       return temp2.getData();
     }
 
     @Override
@@ -153,7 +156,7 @@ public class SinglyLinkedList<E> implements List<E> {
             }
             index++;
         }
-        index = -1;
+        
         return index;
     }
 
@@ -166,6 +169,11 @@ public class SinglyLinkedList<E> implements List<E> {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "SinglyLinkedList{" + "head=" + head + ", tail=" + tail + ", size=" + size + '}';
     }
 
   
