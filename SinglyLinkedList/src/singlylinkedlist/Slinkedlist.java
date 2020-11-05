@@ -14,22 +14,15 @@ public class Slinkedlist {
         SinglyLinkedList lista = new SinglyLinkedList();
         
         lista.addFirst(1);
-        lista.add(1,2);
-        lista.add(2,3);
         lista.addLast(5);
+        lista.addLast(10);
+        lista.addLast(15);
+        lista.addLast(20);
+        lista.addLast(25);
         
    
-        System.out.println(lista.first());
-        System.out.println(lista.last());
-        System.out.println(lista.isEmpty());
-        
-        //System.out.println(lista.removeFirst());
-        //System.out.println(lista.removeLast());
-        System.out.println(lista.remove(2));
-        
-        
-       
-       
+        System.out.println(lista);
+        System.out.println(lista.indexOf(15));
         
        
     }

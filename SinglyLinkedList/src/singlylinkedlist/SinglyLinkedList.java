@@ -11,7 +11,9 @@ public class SinglyLinkedList<E> implements List<E> {
     private int size = 0;
 
     public SinglyLinkedList() {
-        
+        head = null;
+        tail = null;
+        size = 0;
     }
 
     //Consultar primero, ultimo y tamano........................................
@@ -143,21 +145,22 @@ public class SinglyLinkedList<E> implements List<E> {
             temp =temp.next;
         }
        Node<E> temp2 = temp.next;
-       temp2 = temp.next.next;
+       temp2 = temp.next;
        return temp2.getData();
     }
 
     @Override
     public int indexOf(E e) {
         int index = 0;
-        for(Node<E> i= head; i!=null; i=i.next){
-            if(i.equals(e)){
-                return index;
-            }
-            index++;
-        }
-        
-        return index;
+	Node<E> temp = head;
+	while (temp != null) {
+            if (temp.getData() == e) {
+		return index;
+	}
+	index++;
+	temp = temp.next;
+	}
+        return -1;
     }
 
     @Override
@@ -172,25 +175,28 @@ public class SinglyLinkedList<E> implements List<E> {
     }
 
     @Override
-    public String toString() {
-        return "SinglyLinkedList{" + "head=" + head + ", tail=" + tail + ", size=" + size + '}';
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+        if(isEmpty()){
+            return "[]";
+        }
+        s.append("SinglyLinkedList:  ");
+        for( Node<E> n = head ; n != null ; n = n.getNext()){
+            if(n != tail){
+                s.append(n.getData()+ ",");
+            }else
+                s.append(n.getData()+"");
+        }
+        return s.toString();
     }
     
-    private Node <E> getPrevious(Node <E>  n){
-        int posición= 0;
-        int index = 0;
-        
-        for(Node<E> i= head; i!=null; i=i.next){
-            if(i.equals(n)){
-                index = size -posición;
-                Node <E> nodoTemp = n;
-                for(Node<E> j= head; j!=nodoTemp; j=j.next){
-                    return j;
-                }
-            }
-            posición++;
+    private Node <E> getPrevious(Node <E> p){
+        if(p==head)return null;
+        for(Node <E> q=this.head;q!=null;q=q.getNext()){
+             if(q.getNext()==p)
+                return q;
         }
-        return null;
+           return null;
     }
 
   
